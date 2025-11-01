@@ -99,7 +99,7 @@ Citizen AI follows a **client–server architecture** integrating front-end, bac
 - Admins can log in to manage reports and analyze performance metrics.
 
 ## **📁 Project Structure**
-
+``` bash
 CITIZEN_AI/
 │
 ├── static/
@@ -122,7 +122,7 @@ CITIZEN_AI/
 ├── app.py
 ├── requirements.txt
 └── README.md
-
+```
 
 ## **📍 Conclusion**
 **The Citizen AI – Intelligent Citizen Engagement Platform** demonstrates how AI can transform citizen–government interaction by automating feedback, queries, and issue reporting.
