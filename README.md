@@ -1,143 +1,137 @@
-#Citizen AI – Intelligent Citizen Engagement Platform
+# **Citizen AI – Intelligent Citizen Engagement Platform**
 
-Overview
+---
+👨‍💻 Author
 
-Citizen AI is an AI-driven citizen engagement platform designed to bridge the communication gap between citizens and governing authorities. The platform enables users to raise queries, report local issues, and provide feedback through an intelligent chatbot interface.
-By leveraging Generative AI, the chatbot interprets user queries and provides context-aware responses in real time. The system includes modules for feedback collection, issue reporting, and an admin dashboard to ensure transparency and efficient management.
+Developed by: Sachin S
+Contact: sachins210194@gmail.com
+GitHub: https://github.com/Sachin10-git
+---
+## **📘 Overview**
 
-Features
+**Citizen AI** is an AI-driven citizen engagement platform designed to bridge the communication gap between citizens and governing authorities.  
+It enables users to raise queries, report local issues, and provide feedback through an intelligent chatbot interface.  
 
-AI Chatbot Interaction: Conversational interface powered by the IBM Granite model for answering user queries.
+By leveraging **Generative AI**, the chatbot interprets user inputs and provides context-aware responses in real time.  
+The system integrates multiple modules such as feedback collection, issue reporting, and an admin dashboard — ensuring transparency and efficient management.
 
-Feedback Collection: Captures user satisfaction data for continuous service improvement.
+---
 
-Issue Reporting: Allows citizens to log civic issues such as infrastructure damage or service delays.
+## **✨ Features**
 
-Admin Dashboard: Enables administrators to monitor feedback, track issues, and view analytics.
+- **AI Chatbot Interaction:** Gen-AI chatbot powered by the IBM Granite model for conversational assistance.  
+- **Feedback Collection:** Gathers user satisfaction data for continual improvement.  
+- **Issue Reporting:** Simple interface for citizens to log civic issues like infrastructure problems or service delays.  
+- **Admin Dashboard:** Allows admins to monitor feedback, track reports, and manage analytics.  
+- **Login System:** Separate authentication for citizens and administrators.  
+- **Informational Pages:** Includes *About* and *Services* sections for clarity and usability.
 
-User Authentication: Secure login system for both citizens and administrators.
+---
 
-Informational Pages: Includes About and Service pages for user guidance.
+## **⚙️ System Architecture**
 
-System Architecture
+Citizen AI follows a **client–server architecture** integrating front-end, back-end, and administrative layers.
 
-Citizen AI follows a client–server architecture integrating frontend, backend, and administrative layers:
+- **Frontend:** Built with HTML, CSS, and JavaScript for a responsive interface.  
+- **Backend:** Developed using Python and Flask, managing chatbot logic and data handling.  
+- **Admin Panel:** Provides insights into user engagement, reports, and chatbot analytics.
 
-Frontend: Developed using HTML, CSS, and JavaScript for an interactive and responsive interface.
+---
 
-Backend: Implemented in Python with Flask, handling chatbot logic, user requests, and data management.
+## **🧩 Tech Stack**
 
-Admin Panel: Provides visualization of user feedback, issue reports, and chatbot activity logs.
+| Layer | Technologies |
+|--------|---------------|
+| **Frontend** | HTML, CSS, JavaScript |
+| **Backend** | Python, Flask |
+| **AI/ML Libraries** | Transformers, Torch |
+| **Utilities** | DateTime, FuncTools |
+| **Editor/IDE** | Visual Studio Code |
+| **Browsers** | Chrome, Brave, Edge |
 
-Tech Stack
-Layer	Technologies
-Frontend	HTML, CSS, JavaScript
-Backend	Python, Flask
-AI/ML Libraries	Transformers, Torch
-Utilities	DateTime, FuncTools
-Editor/IDE	Visual Studio Code
-Browsers	Google Chrome, Brave, Microsoft Edge
-System Requirements
+---
 
-Hardware:
+## **🖥️ System Requirements**
 
-Processor: Intel i3 or above
+### **Hardware**
+- Processor: Intel i3 or above  
+- RAM: Minimum 4 GB (8 GB recommended)  
+- Hard Disk: Minimum 250 GB  
+- Operating System: Windows / Linux / macOS  
 
-RAM: Minimum 4 GB (8 GB recommended)
+### **Software**
+- Python 3.x  
+- Flask Framework  
+- Required Libraries:
+  ```bash
+  flask
+  torch
+  transformers
+  datetime
+  functools
 
-Hard Disk: 250 GB or higher
+## **🚀 Installation**
+ 1. Clone the repository
+    ```bash
+    git clone https://github.com/yourusername/CitizenAI.git
+    cd CitizenAI
+  2. Create a virtual environment
+     ```bash
+     python -m venv venv
+     source venv/bin/activate  # (macOS/Linux)
+     venv\Scripts\activate     # (Windows)
+  3. Install dependencies
+     ```bash
+     pip install -r requirements.txt
+  4. Run the application
+     ```bash
+     python app.py
+  5. Open in your browser
+     ```bash
+     http://127.0.0.1:5000
 
-OS: Windows / Linux / macOS
+## **🧠 Usage**
+- Navigate to the homepage to access chatbot and services.
+- Log in as a citizen to submit issues or provide feedback.
+- Admins can log in to manage reports and analyze performance metrics.
 
-Software:
+## **📁 Project Structure**
 
-Python 3.x
-
-Flask Framework
-
-Required Libraries:
-
-flask
-torch
-transformers
-datetime
-functools
-
-Installation
-
-Clone the repository
-
-git clone https://github.com/yourusername/CitizenAI.git
-cd CitizenAI
-
-
-Create a virtual environment
-
-python -m venv venv
-source venv/bin/activate  # (on macOS/Linux)
-venv\Scripts\activate     # (on Windows)
-
-
-Install dependencies
-
-pip install -r requirements.txt
-
-
-Run the application
-
-python app.py
-
-
-Open in browser
-
-http://127.0.0.1:5000
-
-Usage
-
-Access the homepage to navigate between chatbot, services, and information pages.
-
-Log in as a citizen to report issues or provide feedback.
-
-Admins can access the dashboard to manage reports and analyze sentiment.
-
-Project Structure
-
-CitizenAI/
+CITIZEN_AI/
 │
-├── static/                # CSS, JS, images
-├── templates/             # HTML templates (index.html, login.html, etc.)
-├── app.py                 # Main Flask backend
-├── requirements.txt       # Project dependencies
-└── README.md              # Project documentation
+├── static/
+│   ├── Favicon/
+│   └── Images/
+│       ├── ai-abt_ser.jpg
+│       ├── ai-background.jpg
+│       └── ai-dashboardbg.jpg
+│
+├── templates/
+│   ├── about.html
+│   ├── chat.html
+│   ├── dashboard.html
+│   ├── index.html
+│   ├── login.html
+│   └── services.html
+│
+├── venv/
+│
+├── app.py
+├── requirements.txt
+└── README.md
 
-Outputs (Screenshots)
 
-Screenshots may include:
+## **📍 Conclusion**
+**The Citizen AI – Intelligent Citizen Engagement Platform** demonstrates how AI can transform citizen–government interaction by automating feedback, queries, and issue reporting.
+It promotes transparent governance and efficient civic service delivery.
 
-Home / Index Page
+## **🔮 Future Enhancements**
+- Integration with voice-based assistants for hands-free user experience.
 
-Login Page
+- Multilingual support for diverse communities.
 
-About & Services Pages
+- Real-time notifications for issue updates and status tracking.
 
-Chatbot Interface
+- AI-based analytics to predict recurring concerns and enhance public services.
 
-Feedback & Issue Reporting Pages
-
-Admin Dashboard
-
-(Insert images here when available)
-
-Conclusion
-
-The Citizen AI platform showcases how artificial intelligence can enhance citizen–government interaction by automating feedback, query management, and issue reporting. It promotes transparent governance and efficient civic service delivery.
-
-Future Enhancements
-
-Integration with voice-based assistants for hands-free operation.
-
-Multilingual support to serve diverse communities.
-
-Real-time notifications for issue updates.
-
-AI-based analytics to predict and resolve frequent citizen concerns.
+  
