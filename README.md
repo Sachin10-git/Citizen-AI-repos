@@ -1,11 +1,14 @@
 # **Citizen AI – Intelligent Citizen Engagement Platform**
 
 ---
-👨‍💻 Author
+## **👨‍💻 Author**
 
 Developed by: Sachin S
+
 Contact: sachins210194@gmail.com
+
 GitHub: https://github.com/Sachin10-git
+
 ---
 ## **📘 Overview**
 
