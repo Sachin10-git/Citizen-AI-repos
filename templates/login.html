@@ -1,0 +1,193 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Citizen AI | Login</title>
+    <style>
+        /* Base Reset */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: "Poppins", sans-serif;
+        }
+
+        body {
+            height: 100vh;
+            background: url("static/images/bg.jpg") no-repeat center center/cover;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            position: relative;
+        }
+
+        /* Overlay */
+        body::after {
+            content: "";
+            position: absolute;
+            top: 0; left: 0; right: 0; bottom: 0;
+            background: rgba(0, 0, 0, 0.55);
+            z-index: 0;
+        }
+
+        /* Login container */
+        .login-container {
+            position: relative;
+            z-index: 2;
+            width: 380px;
+            background: rgba(255, 255, 255, 0.1);
+            backdrop-filter: blur(10px);
+            border-radius: 15px;
+            padding: 40px 30px;
+            box-shadow: 0 8px 32px rgba(0, 0, 0, 0.3);
+            color: white;
+            text-align: center;
+            animation: fadeIn 0.8s ease-in-out;
+        }
+
+        .login-container h2 {
+            font-size: 28px;
+            font-weight: 600;
+            margin-bottom: 20px;
+            color: #ffffff;
+            letter-spacing: 1px;
+        }
+
+        .login-container p {
+            font-size: 14px;
+            margin-bottom: 25px;
+            color: #ddd;
+        }
+
+        /* Input fields */
+        .input-group {
+            margin-bottom: 25px;
+        }
+
+        .input-group input {
+            width: 100%;
+            padding: 12px 15px;
+            border: none;
+            outline: none;
+            border-radius: 8px;
+            font-size: 15px;
+            color: #333;
+        }
+
+        .input-group input::placeholder {
+            color: #777;
+        }
+
+        /* Login button */
+        .login-btn {
+            width: 100%;
+            background: #00bcd4;
+            color: white;
+            padding: 12px;
+            border: none;
+            border-radius: 8px;
+            font-size: 16px;
+            font-weight: bold;
+            cursor: pointer;
+            transition: background 0.3s ease;
+        }
+
+        .login-btn:hover {
+            background: #009fb8;
+        }
+
+        /* Links */
+        .extra-links {
+            margin-top: 20px;
+        }
+
+        .extra-links a {
+            color: #00bcd4;
+            text-decoration: none;
+            font-size: 14px;
+            margin: 0 8px;
+        }
+
+        .extra-links a:hover {
+            text-decoration: underline;
+        }
+
+        /* Footer */
+        .footer-logo {
+            margin-top: 25px;
+            font-size: 12px;
+            color: #ccc;
+            letter-spacing: 1px;
+        }
+
+        /* Success message */
+        .success-message {
+            display: none;
+            margin-top: 15px;
+            color: #00e676;
+            font-size: 14px;
+            font-weight: bold;
+        }
+
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(20px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+    </style>
+</head>
+<body>
+    <div class="login-container">
+        <h2>Welcome to CitizenAI</h2>
+        <p>Sign in to access your personalized AI dashboard</p>
+        
+        <form id="loginForm" method="POST" action="/login">
+            <div class="input-group">
+                <input type="text" name="username" placeholder="Enter your username or email" required>
+            </div>
+            <div class="input-group">
+                <input type="password" name="password" placeholder="Enter your password" required>
+            </div>
+            <button type="submit" class="login-btn">Login</button>
+        </form>
+
+        <div class="success-message" id="successMsg">
+            Login successful! Redirecting to dashboard...
+        </div>
+
+        <div class="extra-links">
+            <a href="/">Back to Home</a> |
+            <a href="/about">About</a>
+        </div>
+
+        <div class="footer-logo">
+            © 2025 CitizenAI Platform
+        </div>
+    </div>
+
+    <script>
+        // Handle successful login redirection
+        const form = document.getElementById("loginForm");
+        const successMsg = document.getElementById("successMsg");
+
+        form.addEventListener("submit", function(event) {
+            event.preventDefault(); // stop default reload
+            const formData = new FormData(form);
+
+            fetch("/login", {
+                method: "POST",
+                body: formData
+            })
+            .then(response => {
+                if (response.redirected) {
+                    successMsg.style.display = "block";
+                    setTimeout(() => {
+                        window.location.href = response.url;
+                    }, 1500);
+                }
+            })
+            .catch(err => console.error("Login failed:", err));
+        });
+    </script>
+</body>
+</html>

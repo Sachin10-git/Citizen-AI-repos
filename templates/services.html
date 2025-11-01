@@ -1,0 +1,218 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Services | CitizenAI</title>
+
+  <style>
+    /* GLOBAL RESET */
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+      font-family: "Poppins", sans-serif;
+    }
+
+    /* BACKGROUND IMAGE */
+    body {
+      min-height: 100vh;
+      background: url("{{ url_for('static', filename='Images/ai-abt_ser.jpg') }}") no-repeat center center fixed;
+      background-size: cover;
+      color: #fff;
+      display: flex;
+      flex-direction: column;
+    }
+
+    /* NAVBAR */
+    nav {
+      background: rgba(0, 0, 0, 0.5);
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 15px 60px;
+      position: sticky;
+      top: 0;
+      z-index: 100;
+      backdrop-filter: blur(10px);
+    }
+
+    nav .logo {
+      font-size: 26px;
+      font-weight: 700;
+      color: #00e5ff;
+    }
+
+    nav ul {
+      list-style: none;
+      display: flex;
+      gap: 30px;
+    }
+
+    nav ul li a {
+      text-decoration: none;
+      color: white;
+      font-size: 16px;
+      transition: color 0.3s;
+    }
+
+    nav ul li a:hover,
+    nav ul li a.active {
+      color: #00e5ff;
+    }
+
+    /* PAGE CONTENT */
+    .services-container {
+      background: rgba(0, 0, 0, 0.65);
+      border-radius: 15px;
+      padding: 50px 60px;
+      max-width: 1100px;
+      margin: 80px auto;
+      box-shadow: 0 8px 32px rgba(0, 0, 0, 0.4);
+      backdrop-filter: blur(6px);
+    }
+
+    .services-container h1 {
+      text-align: center;
+      font-size: 40px;
+      color: #00e5ff;
+      margin-bottom: 40px;
+    }
+
+    .services-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+      gap: 30px;
+    }
+
+    .service-card {
+      background: rgba(255, 255, 255, 0.1);
+      padding: 25px;
+      border-radius: 12px;
+      transition: all 0.3s ease;
+      text-align: center;
+      box-shadow: 0 4px 15px rgba(0, 0, 0, 0.3);
+    }
+
+    .service-card:hover {
+      background: rgba(0, 229, 255, 0.2);
+      transform: translateY(-6px);
+      box-shadow: 0 6px 20px rgba(0, 229, 255, 0.4);
+    }
+
+    .service-card h3 {
+      color: #00e5ff;
+      font-size: 22px;
+      margin-bottom: 15px;
+    }
+
+    .service-card p {
+      color: #e0e0e0;
+      font-size: 15px;
+      line-height: 1.6;
+    }
+
+    /* FOOTER */
+    footer {
+      background: rgba(0, 0, 0, 0.7);
+      text-align: center;
+      padding: 20px;
+      color: #ccc;
+      font-size: 14px;
+      margin-top: auto;
+    }
+
+    /* RESPONSIVE DESIGN */
+    @media (max-width: 768px) {
+      nav {
+        flex-direction: column;
+        gap: 10px;
+        padding: 15px 20px;
+      }
+
+      .services-container {
+        width: 90%;
+        padding: 30px 25px;
+      }
+
+      .service-card h3 {
+        font-size: 20px;
+      }
+
+      .service-card p {
+        font-size: 14px;
+      }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- NAVBAR -->
+  <nav>
+    <div class="logo">CitizenAI</div>
+    <ul>
+      <li><a href="/dashboard">Dashboard</a></li>
+      <li><a href="/services" class="active">Services</a></li>
+      <li><a href="/chat">Chat</a></li>
+      <li><a href="/about">About</a></li>
+      <li><a href="/">Logout</a></li>
+    </ul>
+  </nav>
+
+  <!-- SERVICES SECTION -->
+  <div class="services-container">
+    <h1>Our Services</h1>
+    <div class="services-grid">
+
+      <div class="service-card">
+        <h3>AI Chat Assistant</h3>
+        <p>
+          Engage with our intelligent chatbot to ask questions, access public service information, or get personalized AI-powered assistance 24/7.
+        </p>
+      </div>
+
+      <div class="service-card">
+        <h3>Citizen Feedback Portal</h3>
+        <p>
+          Submit and track feedback on government services. The platform analyzes responses and routes them to the appropriate departments.
+        </p>
+      </div>
+
+      <div class="service-card">
+        <h3>Concern Reporting</h3>
+        <p>
+          Report issues like infrastructure faults, pollution, or delays, and let CitizenAI manage their prioritization and follow-up.
+        </p>
+      </div>
+
+      <div class="service-card">
+        <h3>Data Analytics Dashboard</h3>
+        <p>
+          Visualize real-time data insights and government performance metrics to encourage transparency and civic participation.
+        </p>
+      </div>
+
+      <div class="service-card">
+        <h3>AI Sentiment Analysis</h3>
+        <p>
+          Our models interpret public sentiment to identify patterns in citizen engagement, service quality, and public satisfaction.
+        </p>
+      </div>
+
+      <div class="service-card">
+        <h3>IBM Granite Model Integration</h3>
+        <p>
+          Powered by IBM’s Granite models, we ensure cutting-edge generative AI performance and human-like interaction for citizens.
+        </p>
+      </div>
+
+    </div>
+  </div>
+
+  <!-- FOOTER -->
+  <footer>
+    © 2025 CitizenAI Platform
+  </footer>
+
+</body>
+</html>

@@ -1,0 +1,222 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>Citizen AI Chat</title>
+  <style>
+    body {
+      font-family: "Poppins", sans-serif;
+      background: linear-gradient(to right,#2c5364,#203a43,#0f2027);
+      color: #fff;
+      margin: 0;
+      padding: 0;
+    }
+    header {
+      background: rgba(0,0,0,0.7);
+      padding: 15px 40px;
+      text-align: center;
+      font-size: 24px;
+      font-weight: bold;
+      color: #00e6ff;
+    }
+    .chat-container {
+      max-width: 900px;
+      margin: 40px auto;
+      background: rgba(255,255,255,0.08);
+      border-radius: 15px;
+      padding: 25px;
+      box-shadow: 0 0 20px rgba(0,255,255,0.2);
+    }
+    .chat-response {
+      background: rgba(0,0,0,0.35);
+      border-radius: 10px;
+      padding: 15px;
+      margin-bottom: 10px;
+      color: #eafcff;
+    }
+    .welcome-message {
+      text-align: center;
+      background: rgba(255,255,255,0.08);
+      border-radius: 12px;
+      padding: 20px;
+      margin-bottom: 20px;
+      color: #e0e0e0;
+      font-size: 15px;
+    }
+    form.chat-form {
+      display: flex;
+      gap: 10px;
+      margin-top: 20px;
+    }
+    input[type="text"] {
+      flex: 1;
+      padding: 10px 15px;
+      border: none;
+      border-radius: 10px;
+      background: rgba(255,255,255,0.15);
+      color: #fff;
+      outline: none;
+    }
+    button {
+      background: #00e6ff;
+      color: #000;
+      border: none;
+      padding: 10px 20px;
+      border-radius: 10px;
+      cursor: pointer;
+      font-weight: 600;
+    }
+    textarea {
+      width: 90%;
+      height: 80px;
+      margin-top: 10px;
+      border-radius: 10px;
+      border: none;
+      padding: 10px;
+      resize: none;
+    }
+    .popup {
+      display: none;
+      position: fixed;
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%,-50%);
+      background: rgba(0,0,0,0.9);
+      padding: 25px;
+      border-radius: 15px;
+      color: #00e6ff;
+      z-index: 1000;
+      text-align: center;
+      width: 400px;
+    }
+    .popup h3 {
+      margin-top: 0;
+    }
+    a { color: #00e6ff; text-decoration: none; }
+  </style>
+</head>
+
+<body>
+  <header>
+    <nav style="display:flex;justify-content:space-between;align-items:center;padding:15px 40px;background:rgba(0,0,0,0.7);">
+      <div style="font-size:24px;font-weight:bold;color:#00e6ff;">Citizen AI Chat Assistant</div>
+      <div>
+        <a href="/dashboard" style="color:#00e6ff;margin-right:20px">Dashboard</a>
+        <a href="/logout" style="color:#ff6666">Logout</a>
+      </div>
+    </nav>
+  </header>
+
+  <div class="chat-container">
+    <div id="chat-box">
+      <div class="welcome-message">
+        👋 <strong>Welcome to CitizenAI!</strong><br>
+        I'm here to assist you with AI, data, and citizen solutions.<br>
+        (wait for 10 seconds for the feedback)
+      </div>
+
+      {% if question_response %}
+      <div class="chat-response" id="latest-response">
+        <p><strong>You:</strong> {{ last_question }}</p>
+        <p><strong>Citizen AI:</strong> {{ question_response }}</p>
+      </div>
+
+      <!-- Trigger feedback popup automatically -->
+      <script>
+        window.addEventListener("load", () => {
+          setTimeout(() => {
+            const popup = document.getElementById("feedback-popup");
+            if (popup) popup.style.display = "flex";
+          }, 10000);
+        });
+      </script>
+      {% endif %}
+    </div>
+
+    <form action="/ask" method="POST" class="chat-form" id="ask-form">
+      <input type="text" name="question" placeholder="Type your question..." required />
+      <button type="submit">Send</button>
+    </form>
+  </div>
+
+  <!-- FEEDBACK POPUP -->
+<div class="popup" id="feedback-popup">
+  <h3 style="font-size: 22px;color: #00e6ff;margin: 0;line-height: 1.4;text-align: left;flex: 0 0 150px;">
+    Give a Feedback 
+  </h3>
+  <form id="feedback-form" style="display: flex; flex-direction: column; align-items: center">
+    <textarea
+      name="feedback"
+      placeholder="Type your feedback..."
+      required
+      style="width: 100%; max-width: 350px; height: 100px; border-radius: 10px; padding: 10px; resize: none; border: none;"
+    ></textarea>
+    <button
+      type="submit"
+      style="margin-top: 15px; background: #00e6ff; color: #000; border: none; padding: 10px 20px; border-radius: 10px; cursor: pointer; font-weight: 600;"
+    >
+      Submit Feedback
+    </button>
+  </form>
+</div>
+
+
+  <!-- REPORT PROMPT -->
+  <div class="popup" id="report-prompt">
+    <p>Would you like to report an issue related to this response?</p>
+    <button id="report-yes" style="margin-right:10px;">Yes</button>
+    <button id="report-no">No thanks</button>
+  </div>
+
+  <!-- REPORT BOX -->
+  <div class="popup" id="report-popup">
+    <h3>🧾 Report a Problem</h3>
+    <form id="report-form">
+      <textarea name="concern" placeholder="Describe your concern..." required></textarea>
+      <br><br>
+      <button type="submit">Submit Issue</button>
+    </form>
+  </div>
+
+  <script>
+    // FEEDBACK SUBMIT
+    document.getElementById("feedback-form").addEventListener("submit", async (e) => {
+      e.preventDefault();
+      const formData = new FormData(e.target);
+      const res = await fetch("/feedback", { method: "POST", body: formData });
+      const data = await res.json();
+
+      alert("✅ Feedback recorded — Sentiment: " + data.sentiment);
+      document.getElementById("feedback-popup").style.display = "none";
+
+      // After feedback → ask about reporting
+      setTimeout(() => {
+        document.getElementById("report-prompt").style.display = "block";
+      }, 600);
+    });
+
+    // REPORT PROMPT HANDLING
+    document.getElementById("report-yes").addEventListener("click", () => {
+      document.getElementById("report-prompt").style.display = "none";
+      document.getElementById("report-popup").style.display = "block";
+    });
+    document.getElementById("report-no").addEventListener("click", () => {
+      document.getElementById("report-prompt").style.display = "none";
+      location.href = "/chat"; // refresh to clear chat
+    });
+
+    // REPORT SUBMIT
+    document.getElementById("report-form").addEventListener("submit", async (e) => {
+      e.preventDefault();
+      const formData = new FormData(e.target);
+      const res = await fetch("/concern", { method: "POST", body: formData });
+      const data = await res.json();
+
+      alert("✅ Concern submitted successfully!");
+      document.getElementById("report-popup").style.display = "none";
+      location.href = "/chat"; // refresh to clear chat
+    });
+  </script>
+</body>
+</html>

@@ -1,0 +1,215 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>CitizenAI | Dashboard</title>
+    <style>
+        /* ===== Reset & Base ===== */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: "Poppins", sans-serif;
+        }
+
+        body {
+            min-height: 100vh;
+            background: linear-gradient(135deg, #2d3748, #1a202c);
+            color: #fff;
+            display: flex;
+            flex-direction: column;
+        }
+
+        /* ===== Navbar ===== */
+        header {
+            width: 100%;
+            background: #1f2937;
+            padding: 20px 50px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.4);
+        }
+
+        header h1 {
+            color: #00e6ff;
+            font-size: 24px;
+            font-weight: 700;
+        }
+
+        nav a {
+            color: #fff;
+            text-decoration: none;
+            margin-left: 25px;
+            font-size: 16px;
+            transition: color 0.3s;
+        }
+
+        nav a:hover, nav a.active {
+            color: #00e6ff;
+        }
+
+        /* ===== Dashboard Container ===== */
+        .dashboard-container {
+            flex: 1;
+            display: flex;
+            justify-content: center;
+            align-items: flex-start;
+            padding: 60px 20px;
+        }
+
+        .dashboard-box {
+            background: rgba(255, 255, 255, 0.08);
+            border-radius: 20px;
+            max-width: 1200px;
+            width: 90%;
+            padding: 40px;
+            box-shadow: 0 0 25px rgba(0, 255, 255, 0.2);
+        }
+
+        h2 {
+            color: #00e6ff;
+            font-size: 28px;
+            margin-bottom: 20px;
+            text-align: center;
+        }
+
+        /* Weekly Sentiment Section */
+        .sentiment-section h3 {
+            color: #fff;
+            font-size: 22px;
+            margin-bottom: 15px;
+            text-align: left;
+        }
+
+        .sentiment-cards {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 25px;
+            margin-bottom: 40px;
+        }
+
+        .sentiment-card {
+            border-radius: 12px;
+            padding: 30px;
+            text-align: center;
+            font-weight: 600;
+            color: #fff;
+            transition: transform 0.3s, box-shadow 0.3s;
+        }
+
+        .sentiment-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 0 15px rgba(255, 255, 255, 0.2);
+        }
+
+        .positive {
+            background: #16a34a;
+        }
+
+        .neutral {
+            background: #facc15;
+            color: #222;
+        }
+
+        .negative {
+            background: #dc2626;
+        }
+
+        .sentiment-card p {
+            font-size: 24px;
+            margin-top: 10px;
+        }
+
+        /* Recent Citizen Issues */
+        .issues-section h3 {
+            color: #fff;
+            font-size: 22px;
+            margin-bottom: 10px;
+        }
+
+        .issue-list {
+            background: rgba(255, 255, 255, 0.1);
+            border-radius: 10px;
+            padding: 15px 20px;
+            list-style: none;
+        }
+
+        .issue-list li {
+            margin-bottom: 12px;
+            padding: 10px;
+            border-bottom: 1px solid rgba(255, 255, 255, 0.15);
+            font-size: 15px;
+            color: #e2e8f0;
+        }
+
+        .issue-list li:last-child {
+            border-bottom: none;
+        }
+
+        /* Scrollbar */
+        ::-webkit-scrollbar {
+            width: 8px;
+        }
+
+        ::-webkit-scrollbar-thumb {
+            background: rgba(255, 255, 255, 0.3);
+            border-radius: 5px;
+        }
+
+        ::-webkit-scrollbar-thumb:hover {
+            background: rgba(0, 255, 255, 0.5);
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <h1>Citizen Insights Dashboard</h1>
+        <nav>
+            <a href="/dashboard" class="active">Dashboard</a>
+            <a href="/services">Services</a>
+            <a href="/chat">Chat</a>
+            <a href="/about">About</a>
+            <a href="/logout">Logout</a>
+        </nav>
+    </header>
+
+    <div class="dashboard-container">
+        <div class="dashboard-box">
+            <h2>Welcome Back, {{ session['user'] }}</h2>
+
+            <!-- Weekly Sentiment Analysis -->
+            <div class="sentiment-section">
+                <h3>📊 Weekly Sentiment Analysis</h3>
+                <div class="sentiment-cards">
+                    <div class="sentiment-card positive">
+                        <h4>Positive</h4>
+                        <p>{{ sentiment_counts.positive }}</p>
+                    </div>
+                    <div class="sentiment-card neutral">
+                        <h4>Neutral</h4>
+                        <p>{{ sentiment_counts.neutral }}</p>
+                    </div>
+                    <div class="sentiment-card negative">
+                        <h4>Negative</h4>
+                        <p>{{ sentiment_counts.negative }}</p>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Recent Citizen Issues -->
+            <div class="issues-section">
+                <h3>Recent Citizen Issues</h3>
+                <ul class="issue-list">
+                    {% for issue in recent_issues %}
+                        <li>{{ issue }}</li>
+                    {% else %}
+                        <li>No issues reported yet.</li>
+                    {% endfor %}
+                </ul>
+            </div>
+        </div>
+    </div>
+</body>
+</html>

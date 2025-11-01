@@ -1,0 +1,160 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>About | Citizen AI</title>
+
+  <style>
+    /* Reset and font */
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+      font-family: "Poppins", sans-serif;
+    }
+
+    /* BODY with IMAGE BACKGROUND */
+    body {
+      min-height: 100vh;
+      background: url("{{ url_for('static', filename='Images/ai-abt_ser.jpg') }}") no-repeat center center fixed;
+      background-size: cover;
+      color: #fff;
+      display: flex;
+      flex-direction: column;
+    }
+
+    /* Transparent Navbar */
+    nav {
+      background: rgba(0, 0, 0, 0.7);
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 15px 60px;
+      position: sticky;
+      top: 0;
+      z-index: 100;
+      backdrop-filter: blur(10px);
+    }
+
+    nav .logo {
+      font-size: 26px;
+      font-weight: 700;
+      color: #00e5ff;
+    }
+
+    nav ul {
+      list-style: none;
+      display: flex;
+      gap: 30px;
+    }
+
+    nav ul li a {
+      text-decoration: none;
+      color: white;
+      font-size: 16px;
+      transition: color 0.3s;
+    }
+
+    nav ul li a:hover,
+    nav ul li a.active {
+      color: #00e5ff;
+    }
+
+    /* CONTENT CONTAINER */
+    .about-container {
+      background: rgba(0, 0, 0, 0.5); /* Semi-transparent layer */
+      border-radius: 15px;
+      padding: 50px 60px;
+      max-width: 1100px;
+      margin: 80px auto;
+      box-shadow: 0 8px 32px rgba(0, 0, 0, 0.5);
+      backdrop-filter: blur(6px);
+    }
+
+    .about-container h1 {
+      text-align: center;
+      font-size: 40px;
+      color: #00e5ff;
+      margin-bottom: 30px;
+    }
+
+    .about-container p {
+      font-size: 17px;
+      line-height: 1.8;
+      color: #f1f1f1;
+      margin-bottom: 20px;
+    }
+
+    .about-container h3 {
+      color: #00bcd4;
+      margin-top: 25px;
+      margin-bottom: 10px;
+      font-size: 22px;
+    }
+
+    /* FOOTER */
+    footer {
+      background: rgba(0, 0, 0, 0.8);
+      text-align: center;
+      padding: 20px;
+      color: #ccc;
+      font-size: 14px;
+      margin-top: auto;
+    }
+
+    /* RESPONSIVE */
+    @media (max-width: 768px) {
+      nav {
+        flex-direction: column;
+        gap: 10px;
+        padding: 15px 20px;
+      }
+
+      .about-container {
+        width: 90%;
+        padding: 30px 25px;
+      }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- Navbar -->
+  <nav>
+    <div class="logo">Citizen AI</div>
+    <ul>
+      <li><a href="/dashboard">Dashboard</a></li>
+      <li><a href="/services">Services</a></li>
+      <li><a href="/chat">Chat</a></li>
+      <li><a href="/about" class="active">About</a></li>
+      <li><a href="/">Logout</a></li>
+    </ul>
+  </nav>
+
+  <!-- About Section -->
+  <div class="about-container">
+    <h1>About Citizen AI</h1>
+    <p><strong>Citizen AI</strong> is a platform designed to improve how governments and citizens interact, using artificial intelligence (AI) to make public services smarter, faster and more accessible.</p>
+
+    <h3>Our Mission</h3>
+    <p>To simplify civic interactions, encourage transparency, and foster trust by providing a smart, responsive, and accesssible interface for every citizen. Whether you're submitting feedback, accessing government services, or exploring insights - Citizen AI is your bridge to a smarter society.</p>
+
+    <h3>Simple Terms</h3>
+    <p>
+      Think of CitizenAl as a digital assistant for public service-just like a chatbot or an Al helpdesk, but for government-related tasks like:
+        <br>
+    - Asking questions about public services
+        <br>
+    - Reporting issues (like potholes, pollution, or delays)
+    </p>
+
+  </div>
+
+  <!-- Footer -->
+  <footer>
+    © 2025 Citizen AI Platform 
+  </footer>
+
+</body>
+</html>
